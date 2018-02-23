@@ -11,7 +11,9 @@ defmodule ShieldWeb.UserView do
 
   def render("user.json", %{user: user}) do
     json = %{id: user.id, email: user.email}
-    if is_nil(user.settings), do: json,
-                              else: Map.put(json, :settings, user.settings)
+
+    if is_nil(user.settings),
+      do: json,
+      else: Map.put(json, :settings, user.settings)
   end
 end

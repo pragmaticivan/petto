@@ -21,8 +21,7 @@ defmodule ShieldWeb.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(Shield.Gettext, "errors",
-        msg, msg, count, opts)
+      Gettext.dngettext(Shield.Gettext, "errors", msg, msg, count, opts)
     else
       Gettext.dgettext(Shield.Gettext, "errors", msg, opts)
     end

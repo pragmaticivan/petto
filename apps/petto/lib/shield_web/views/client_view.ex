@@ -22,19 +22,21 @@ defmodule ShieldWeb.ClientView do
   end
 
   def render("client.json", %{client: client}) do
-    json = %{id: client.id,
-             name: client.name,
-             secret: client.secret,
-             redirect_uri: client.redirect_uri}
+    json = %{
+      id: client.id,
+      name: client.name,
+      secret: client.secret,
+      redirect_uri: client.redirect_uri
+    }
+
     if is_nil(client.settings),
       do: json,
       else: Map.put(json, :settings, client.settings)
   end
 
   def render("app_client.json", %{client: client}) do
-    json = %{id: client.id,
-             name: client.name,
-             redirect_uri: client.redirect_uri}
+    json = %{id: client.id, name: client.name, redirect_uri: client.redirect_uri}
+
     if is_nil(client.settings),
       do: json,
       else: Map.put(json, :settings, client.settings)

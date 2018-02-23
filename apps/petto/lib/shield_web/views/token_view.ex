@@ -6,10 +6,10 @@ defmodule ShieldWeb.TokenView do
   end
 
   def render("token.json", %{token: token}) do
-    json = %{name: token.name,
-             value: token.value,
-             expires_at: token.expires_at}
-    if is_nil(token.details), do: json,
-                              else: Map.put(json, :details, token.details)
+    json = %{name: token.name, value: token.value, expires_at: token.expires_at}
+
+    if is_nil(token.details),
+      do: json,
+      else: Map.put(json, :details, token.details)
   end
 end

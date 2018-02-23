@@ -11,8 +11,10 @@ defmodule ShieldWeb.AppView do
   end
 
   def render("app.json", %{app: app}) do
-    %{id: app.id,
+    %{
+      id: app.id,
       scope: app.scope,
-      client: ClientView.render("app_client.json", %{client: app.client})}
+      client: ClientView.render("app_client.json", %{client: app.client})
+    }
   end
 end
