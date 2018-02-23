@@ -1,6 +1,6 @@
-defmodule ShieldWeb.ClientControllerTest.AppControllerTest do
+defmodule ShieldWeb.AppControllerTest do
   use ShieldWeb.ConnCase
-  import Petto.Factory
+  import Shield.Factory
 
   @repo Application.get_env(:authable, :repo)
   @app Application.get_env(:authable, :app)

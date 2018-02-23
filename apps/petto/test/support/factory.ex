@@ -1,4 +1,4 @@
-defmodule Petto.Factory do
+defmodule Shield.Factory do
   @moduledoc """
   Generates factories
   """
