@@ -1,0 +1,40 @@
+defmodule ShieldWeb.TokenController do
+  use ShieldWeb, :controller
+  alias Shield.Policy.Token.Authorize, as: AuthorizePolicy
+  alias Shield.Store.Token, as: TokenStore
+
+  @renderer Application.get_env(:authable, :renderer)
+  @views Application.get_env(:petto, :views)
+  @hooks Application.get_env(:petto, :hooks)
+
+  # GET /tokens/:id
+  def show(conn, %{"id" => _, "client_id" => _, "client_secret" => _} = params) do
+    case TokenStore.client_token(params) do
+      {:ok, %{"token" => token}} ->
+        conn
+        |> put_status(:ok)
+        |> render(@views[:token], "show.json", token: token)
+
+      {:error, {http_status_code, errors}} ->
+        @renderer.render(conn, http_status_code, %{errors: errors})
+    end
+  end
+
+  # POST /tokens
+  def create(conn, %{"token" => token_params} = params) do
+    conn = @hooks.before_token_create(conn, params)
+
+    case AuthorizePolicy.process(token_params) do
+      {:ok, token} ->
+        conn
+        |> @hooks.after_token_create_success({token_params, token})
+        |> put_status(:created)
+        |> render(@views[:token], "show.json", token: token)
+
+      {:error, {http_status_code, errors} = res} ->
+        conn
+        |> @hooks.after_token_create_failure({token_params, res})
+        |> @renderer.render(http_status_code, %{errors: errors})
+    end
+  end
+end
