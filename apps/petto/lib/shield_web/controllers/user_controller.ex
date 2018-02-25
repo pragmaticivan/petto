@@ -31,7 +31,6 @@ defmodule ShieldWeb.UserController do
     [enabled: Application.get_env(:petto, :confirmable)] when action in [:me, :change_password]
   )
 
-
   # GET /users/me
   def me(conn, _) do
     conn

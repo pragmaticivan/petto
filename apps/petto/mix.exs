@@ -27,6 +27,7 @@ defmodule Petto.Mixfile do
         :cowboy,
         :logger,
         :gettext,
+        :ex_machina,
         :phoenix_ecto,
         :authable,
         :shield_notifier
@@ -37,7 +38,6 @@ defmodule Petto.Mixfile do
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(:dev), do: ["lib", "test/support/factory.ex"]
-  defp elixirc_paths(:staging), do: ["lib", "test/support/factory.ex"]
   defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
@@ -56,7 +56,8 @@ defmodule Petto.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:poison, "~> 2.0 or ~> 3.0 or ~> 3.1"},
-      {:ex_machina, "~> 2.1", only: :test},
+      {:ex_machina, "~> 2.1"},
+      {:faker, "~> 0.9.0"},
       {:credo, "~> 0.6.1", only: :dev},
       {:ex_doc, ">= 0.14.5", only: :dev},
       {:cowboy, "~> 1.0"}
