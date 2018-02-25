@@ -56,7 +56,7 @@ defmodule Petto.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:poison, "~> 2.0 or ~> 3.0 or ~> 3.1"},
-      {:ex_machina, "~> 1.0.1", only: :test},
+      {:ex_machina, "~> 2.1", only: :test},
       {:credo, "~> 0.6.1", only: :dev},
       {:ex_doc, ">= 0.14.5", only: :dev},
       {:cowboy, "~> 1.0"}
