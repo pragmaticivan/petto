@@ -62,6 +62,7 @@ defmodule Shield.Arm.Confirmable do
   end
 
   defp update_confirm_status(user, status) do
+
     settings = user.settings || %{} |> Map.put("confirmed", status)
     changeset = @resource_owner.settings_changeset(user, %{settings: settings})
     @repo.update(changeset)
