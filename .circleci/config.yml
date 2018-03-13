@@ -26,7 +26,7 @@ jobs:
       - run: mix test
   deploy:
     machine:
-        enabled: true
+      enabled: true
     working_directory: ~/circleci-petto-workflows
     steps:
       - checkout
@@ -38,3 +38,15 @@ jobs:
           command: |
             echo $AUTH_TOKEN | we login -r xyz
             we deploy -p petto -r xyz
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
