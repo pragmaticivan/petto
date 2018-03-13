@@ -15,8 +15,8 @@ use Mix.Config
 # which you typically run after static files are built.
 config :petto, PettoWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [host: "0.0.0.0", port: 80],
+  secret_key_base: Map.get(System.get_env(), "SECRET_KEY_BASE", "")
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -61,4 +61,16 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+
+# Configure your database
+config :petto, Petto.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("DB_USERNAME"),
+  password: System.get_env("DB_PASSWORD"),
+  database: "petto_prod",
+  hostname: "db",
+  pool_size: 15
+
+config :shield_notifier, Shield.Notifier.Mailer,
+  adapter: Bamboo.SendgridAdapter,
+  api_key: System.get_env("SENDGRID_API_KEY")

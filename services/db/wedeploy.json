@@ -1,0 +1,7 @@
+{
+  "id": "db",
+  "image": "healthcheck/postgres",
+  "volumes": {
+    "pgdata": "/var/lib/postgresql/data"
+  }
+}
