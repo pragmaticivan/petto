@@ -24,3 +24,17 @@ jobs:
       - run: mix local.hex --force
       - run: mix deps.get
       - run: mix test
+  deploy:
+    machine:
+        enabled: true
+    working_directory: ~/circleci-petto-workflows
+    steps:
+      - checkout
+      - run:
+          name: Setup WeDeploy CLI
+          command: bash .circleci/setup_cli.sh
+
+      - run:
+          command: |
+            echo $AUTH_TOKEN | we login -r xyz
+            we deploy -p petto -r xyz
