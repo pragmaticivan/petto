@@ -15,7 +15,7 @@ jobs:
           POSTGRES_USER: petto
           POSTGRES_PASSWORD: petto
 
-    working_directory: ~/repo
+    working_directory: ~/circleci-petto-workflows
     steps:
       - checkout
 
