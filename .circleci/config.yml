@@ -36,6 +36,7 @@ jobs:
 
       - run:
           command: |
+            we remote set xyz wedeploy.xyz
             echo $AUTH_TOKEN | we login -r xyz
             we deploy -p petto -r xyz
 
