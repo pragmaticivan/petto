@@ -24,30 +24,30 @@ jobs:
       - run: mix local.hex --force
       - run: mix deps.get
       - run: mix test
-  deploy:
-    machine:
-      enabled: true
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run:
-          name: Setup WeDeploy CLI
-          command: bash .circleci/setup_cli.sh
+  # deploy:
+  #   machine:
+  #     enabled: true
+  #   working_directory: ~/repo
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Setup WeDeploy CLI
+  #         command: bash .circleci/setup_cli.sh
 
-      - run:
-          command: |
-            we remote set xyz wedeploy.xyz
-            echo $AUTH_TOKEN | we login -r xyz
-            we deploy -p petto -r xyz
+  #     - run:
+  #         command: |
+  #           we remote set xyz wedeploy.xyz
+  #           echo $AUTH_TOKEN | we login -r xyz
+  #           we deploy -p petto -r xyz
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      # - deploy:
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: master
