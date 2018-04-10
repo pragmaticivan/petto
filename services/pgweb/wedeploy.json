@@ -1,0 +1,8 @@
+{
+  "id": "pgweb",
+  "image": "sosedoff/pgweb",
+  "port": 8081,
+  "env": {
+    "DATABASE_URL": "postgres://petto:123change@db:5432/petto?sslmode=disable"
+  }
+}

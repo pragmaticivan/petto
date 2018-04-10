@@ -67,7 +67,7 @@ config :petto, Petto.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: System.get_env("DB_USERNAME"),
   password: System.get_env("DB_PASSWORD"),
-  database: "petto_prod",
+  database: "petto",
   hostname: "db",
   pool_size: 15
 

@@ -1,6 +1,11 @@
 {
   "id": "db",
   "image": "healthcheck/postgres",
+  "env": {
+    "POSTGRES_PASSWORD": "123change",
+    "POSTGRES_USER": "petto",
+    "POSTGRES_DB": "petto"
+  },
   "volumes": {
     "pgdata": "/var/lib/postgresql/data"
   }
